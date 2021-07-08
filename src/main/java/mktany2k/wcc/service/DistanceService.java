@@ -17,20 +17,14 @@ public class DistanceService {
     }
 
     public Distance calculate(String fromPostCode, String toPostCode) {
-        Location fromLoc = repository.findOneByPostcode(fromPostCode).orElseThrow(() -> new PostalCodeNotFoundException(fromPostCode));
-        Location toLoc = repository.findOneByPostcode(toPostCode).orElseThrow(() -> new PostalCodeNotFoundException(toPostCode));
+        Location fromLoc = repository.findOneByPostcode(fromPostCode)
+                .orElseThrow(() -> new PostalCodeNotFoundException(fromPostCode));
+        Location toLoc = repository.findOneByPostcode(toPostCode)
+                .orElseThrow(() -> new PostalCodeNotFoundException(toPostCode));
+        
         Distance distance = new Distance();
-        LocationDto fromLocation = new LocationDto();
-        fromLocation.setPostalCode(fromLoc.getPostcode());
-        fromLocation.setLongitude(fromLoc.getLongitude());
-        fromLocation.setLatitude(fromLoc.getLatitude());
-
-        LocationDto toLocation = new LocationDto();
-        toLocation.setPostalCode(toLoc.getPostcode());
-        toLocation.setLongitude(toLoc.getLongitude());
-        toLocation.setLatitude(toLoc.getLatitude());
-        distance.setFrom(fromLocation);
-        distance.setTo(toLocation);
+        distance.setFrom(Mappers.from(fromLoc));
+        distance.setTo(Mappers.from(toLoc));
         distance.setDistance(Haversine.distance(fromLoc.getLongitude(), fromLoc.getLatitude(), toLoc.getLongitude(), toLoc.getLatitude()));
         return distance;
     }
