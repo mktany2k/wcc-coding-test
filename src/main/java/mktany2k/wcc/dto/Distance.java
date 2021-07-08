@@ -1,4 +1,4 @@
-package mktany2k.wcc.controller;
+package mktany2k.wcc.dto;
 
 public class Distance {
 

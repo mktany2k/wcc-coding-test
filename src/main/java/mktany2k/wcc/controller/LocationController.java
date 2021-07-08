@@ -1,31 +1,25 @@
 package mktany2k.wcc.controller;
 
+import mktany2k.wcc.dto.Distance;
+import mktany2k.wcc.service.LocationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.invoke.MethodHandles;
+
 @RestController
 @RequestMapping("/location")
 public class LocationController {
-    @GetMapping("{from}/{to}")
-    public Distance distance(
-            @PathVariable("from") String from,
-            @PathVariable("to") String to
-    ) {
-        Distance distance = new Distance();
-        LocationDto fromLocation = new LocationDto();
-        fromLocation.setPostalCode("from");
-        fromLocation.setLongitute(0.0);
-        fromLocation.setLatitude(0.0);
-        LocationDto toLocation = new LocationDto();
-        toLocation.setPostalCode("to");
-        toLocation.setLongitute(1.1);
-        toLocation.setLatitude(1.1);
-        distance.setFrom(fromLocation);
-        distance.setTo(toLocation);
-        distance.setDistance(1D);
 
-        return distance;
+    private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    private final LocationService service;
+
+    public LocationController(LocationService service) {
+        this.service = service;
     }
 }

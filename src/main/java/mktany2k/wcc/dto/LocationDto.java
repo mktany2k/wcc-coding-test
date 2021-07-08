@@ -1,8 +1,8 @@
-package mktany2k.wcc.controller;
+package mktany2k.wcc.dto;
 
 public class LocationDto {
     private String postalCode;
-    private double longitute;
+    private double longitude;
     private double latitude;
 
     public String getPostalCode() {
@@ -13,12 +13,12 @@ public class LocationDto {
         this.postalCode = postalCode;
     }
 
-    public double getLongitute() {
-        return longitute;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLongitute(double longitute) {
-        this.longitute = longitute;
+    public void setLongitude(double longitute) {
+        this.longitude = longitute;
     }
 
     public double getLatitude() {
