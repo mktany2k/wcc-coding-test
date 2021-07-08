@@ -7,7 +7,7 @@ public class HaversineTest {
 
     @Test
     public void a() {
-        double result = Haversine.distance(50.0359, -5.4253, 58.3838, -3.0412);
+        double result = Haversine.distance(-5.4253, 50.0359, -3.0412, 58.3838);
         Assertions.assertEquals(962.8530852121846, result);
     }
 }

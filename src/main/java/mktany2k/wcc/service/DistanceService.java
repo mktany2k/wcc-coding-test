@@ -2,10 +2,11 @@ package mktany2k.wcc.service;
 
 import mktany2k.wcc.controller.exception.PostalCodeNotFoundException;
 import mktany2k.wcc.dto.Distance;
-import mktany2k.wcc.dto.LocationDto;
 import mktany2k.wcc.model.Location;
 import mktany2k.wcc.repository.LocationRepository;
 import org.springframework.stereotype.Service;
+
+import static mktany2k.wcc.service.Mappers.asDto;
 
 @Service
 public class DistanceService {
@@ -16,16 +17,16 @@ public class DistanceService {
         this.repository = repository;
     }
 
-    public Distance calculate(String fromPostCode, String toPostCode) {
-        Location fromLoc = repository.findOneByPostcode(fromPostCode)
-                .orElseThrow(() -> new PostalCodeNotFoundException(fromPostCode));
-        Location toLoc = repository.findOneByPostcode(toPostCode)
-                .orElseThrow(() -> new PostalCodeNotFoundException(toPostCode));
-        
-        Distance distance = new Distance();
-        distance.setFrom(Mappers.from(fromLoc));
-        distance.setTo(Mappers.from(toLoc));
-        distance.setDistance(Haversine.distance(fromLoc.getLongitude(), fromLoc.getLatitude(), toLoc.getLongitude(), toLoc.getLatitude()));
-        return distance;
+    public Distance calculateDistance(String fromPostCode, String toPostCode) {
+        return distanceBetween(locationIn(fromPostCode), locationIn(toPostCode));
+    }
+
+    private Distance distanceBetween(Location from, Location to) {
+        return new Distance(asDto(from), asDto(to));
+    }
+
+    private Location locationIn(String postCode) {
+        return repository.findOneByPostcode(postCode)
+                .orElseThrow(() -> new PostalCodeNotFoundException(postCode));
     }
 }

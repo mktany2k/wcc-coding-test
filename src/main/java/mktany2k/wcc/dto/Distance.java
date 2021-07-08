@@ -1,33 +1,27 @@
 package mktany2k.wcc.dto;
 
-public class Distance {
+import mktany2k.wcc.service.Haversine;
 
-    private LocationDto from;
-    private LocationDto to;
-    private double distance;
+public final class Distance {
+
+    private final LocationDto from;
+    private final LocationDto to;
+
+    public Distance(LocationDto from, LocationDto to) {
+        this.from = from;
+        this.to = to;
+    }
 
     public LocationDto getFrom() {
         return from;
-    }
-
-    public void setFrom(LocationDto from) {
-        this.from = from;
     }
 
     public LocationDto getTo() {
         return to;
     }
 
-    public void setTo(LocationDto to) {
-        this.to = to;
-    }
-
     public double getDistance() {
-        return distance;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
+        return Haversine.distance(from.getLatitude(), from.getLongitude(), to.getLatitude(), to.getLongitude());
     }
 
     public String getUnit() {

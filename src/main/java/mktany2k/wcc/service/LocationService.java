@@ -11,6 +11,4 @@ public class LocationService {
     public LocationService(LocationRepository repository) {
         this.repository = repository;
     }
-
-
 }

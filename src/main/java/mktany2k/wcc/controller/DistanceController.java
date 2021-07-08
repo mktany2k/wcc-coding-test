@@ -16,8 +16,8 @@ import java.lang.invoke.MethodHandles;
 @RequestMapping("/distance")
 public class DistanceController {
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-    private final DistanceService service;
 
+    private final DistanceService service;
 
     public DistanceController(DistanceService service) {
         this.service = service;
@@ -29,7 +29,7 @@ public class DistanceController {
             @PathVariable("to") String to
     ) {
         logger.debug("[request] {from: '{}', to: '{}'}", from, to);
-        var distance = service.calculate(from, to);
+        var distance = service.calculateDistance(from, to);
         return ResponseEntity.ok(distance);
     }
 }
