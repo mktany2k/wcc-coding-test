@@ -1,4 +1,4 @@
-package mktany2k.wcc.distance;
+package mktany2k.wcc.service;
 
 public class Haversine {
     private static final double EARTH_RADIUS = 6371; //radius in KM

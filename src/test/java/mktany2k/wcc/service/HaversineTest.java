@@ -1,4 +1,4 @@
-package mktany2k.wcc.distance;
+package mktany2k.wcc.service;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
