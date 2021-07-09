@@ -1,12 +1,11 @@
-package mktany2k.wcc.model;
+package mktany2k.wcc.exception;
 
 import java.util.List;
 
-public class ApplicationError {
+public class ValidationException extends RuntimeException{
     private final List<String> errors;
 
-
-    public ApplicationError(List<String> errors) {
+    public ValidationException(List<String> errors) {
         this.errors = errors;
     }
 

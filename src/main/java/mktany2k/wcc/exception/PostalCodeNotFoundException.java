@@ -1,4 +1,4 @@
-package mktany2k.wcc.controller.exception;
+package mktany2k.wcc.exception;
 
 public class PostalCodeNotFoundException extends RuntimeException {
     public PostalCodeNotFoundException(String from) {

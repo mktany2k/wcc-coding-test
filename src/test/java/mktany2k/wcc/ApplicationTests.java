@@ -1,5 +1,6 @@
 package mktany2k.wcc;
 
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -27,6 +28,8 @@ class ApplicationTests {
         distanceBetween("AB10 1XG", "AB12 5GL", status().isOk())
                 .andExpect(jsonPath("from.postalCode", is("AB10 1XG")))
                 .andExpect(jsonPath("to.postalCode", is("AB12 5GL")))
+                .andExpect(jsonPath("distance", is(Matchers.greaterThan(0.0))))
+                .andExpect(jsonPath("unit", is("KM")))
         ;
     }
 

@@ -1,6 +1,5 @@
-package mktany2k.wcc.controller.exception;
+package mktany2k.wcc.exception;
 
-import mktany2k.wcc.model.ApplicationError;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,5 +18,14 @@ public class RestResponseEntityExceptionHandler {
     ) {
         var error = new ApplicationError(List.of(ex.getMessage()));
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<ApplicationError>
+    handleValidationException(
+            ValidationException ex
+    ) {
+        var errors = new ApplicationError(ex.getErrors());
+        return new ResponseEntity<>(errors, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 }
