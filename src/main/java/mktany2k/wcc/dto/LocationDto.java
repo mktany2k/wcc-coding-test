@@ -49,4 +49,13 @@ public final class LocationDto {
         }
         throw new ValidationException(errors);
     }
+
+    @Override
+    public String toString() {
+        return "LocationDto{" +
+                "postalCode='" + postalCode + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
+    }
 }

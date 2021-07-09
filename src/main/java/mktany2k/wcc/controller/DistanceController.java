@@ -28,7 +28,7 @@ public class DistanceController {
             @PathVariable("from") String from,
             @PathVariable("to") String to
     ) {
-        logger.debug("[request] {from: '{}', to: '{}'}", from, to);
+        logger.info("[request] {from: '{}', to: '{}'}", from, to);
         var distance = service.calculateDistance(from, to);
         return ResponseEntity.ok(distance);
     }
