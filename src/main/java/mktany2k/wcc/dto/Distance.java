@@ -1,7 +1,5 @@
 package mktany2k.wcc.dto;
 
-import mktany2k.wcc.service.Haversine;
-
 public final class Distance {
 
     private final LocationDto from;

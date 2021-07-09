@@ -1,6 +1,6 @@
-package mktany2k.wcc.service;
+package mktany2k.wcc.dto;
 
-public class Haversine {
+class Haversine {
     private static final double EARTH_RADIUS = 6371; //radius in KM
 
     //Formula is copy from the given 'Java Test.docx'
